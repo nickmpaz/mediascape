@@ -1,0 +1,5 @@
+.env.prod
+.env.prod.db
+
+app/env/*
+app/mediascape/__pycache__/*
