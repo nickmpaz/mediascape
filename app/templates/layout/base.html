@@ -78,9 +78,12 @@
                     <a href="#" class="list-group-item list-group-item-action bg-light">Notifications</a>
                     <a href="#" class="list-group-item list-group-item-action bg-light">Comments</a>
                     <a href="#" class="list-group-item list-group-item-action bg-light">Account</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Logout</a>
+                    <form action="{% url 'logout' %}">
+                        <input type="hidden" value="{{ request.get_full_path }}" name="next" />
+                        <button type="submit" class="list-group-item list-group-item-action bg-light">Logout</button>
+                    </form>
                 {% else %}
-                    <form action="">
+                    <form action="{% url 'login' %}">
                         <input type="hidden" value="{{ request.get_full_path }}" name="next" />
                         <button type="submit" class="list-group-item list-group-item-action bg-light">Login</button>
                     </form>

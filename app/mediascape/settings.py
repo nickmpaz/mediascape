@@ -128,6 +128,10 @@ STATIC_URL = "/staticfiles/"
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
+# Authentication
+
+LOGIN_REDIRECT_URL = '/'
+
 # General environment variables
 
 GOOGLE_BOOKS_API_KEY = os.environ.get('GOOGLE_BOOKS_API_KEY')
