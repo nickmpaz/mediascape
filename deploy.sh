@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ssh -i ~/secrets/myAmazonKey.pem ubuntu@ec2-3-135-208-246.us-east-2.compute.amazonaws.com << EOF
+ssh -i ~/myAmazonKey.pem ubuntu@ec2-3-135-208-246.us-east-2.compute.amazonaws.com << EOF
     cd mediascape
     ls
     # docker-compose down
