@@ -1,0 +1,84 @@
+{% include "books/comments.html" %}
+
+<script>
+    // expanding a comment's children
+    // $( ".expand-comment" ).click(function() {
+    $( "#page-content-wrapper" ).delegate( ".expand-comment", "click", function() {
+        var comment_card = $(this).closest('.card');
+        var collapse_button = comment_card.find('.collapse-comment').first();
+        var child_comments = comment_card.find('.child-comments').first();
+        $(this).hide();
+        collapse_button.show();
+        child_comments.show();
+    });
+    // collapsing a comment's children
+    // $( ".collapse-comment" ).click(function() {
+    $( "#page-content-wrapper" ).delegate( ".collapse-comment", "click", function() {
+        var comment_card = $(this).closest('.card');
+        var expand_comment = comment_card.find('.expand-comment').first();
+        var child_comments = comment_card.find('.child-comments').first();
+        $(this).hide();
+        expand_comment.show();
+        child_comments.hide();
+    });
+    // delete comment
+    // $( ".delete-comment" ).click(function() {
+    $( "#page-content-wrapper" ).delegate( ".delete-comment", "click", function() {
+        var comment_card = $(this).closest('.card');
+        comment_card.hide();
+        $.ajax({
+            url: $(this).data('endpoint'),
+            type: 'get', 
+            success: function(data) {
+                // alert("deleted");
+            },
+            error: function(data){
+                comment_card.show();
+                alert('error');
+            },
+            failure: function(data) { 
+                comment_card.show();
+                alert('error');
+            }
+        }); 
+    });
+    // upvote behavior
+    // $( ".upvote-comment" ).click(function() {
+    $( "#page-content-wrapper" ).delegate( ".upvote-comment", "click", function() {
+        var begin_status = $(this).data('status');
+        var current_status = !begin_status;
+        var upvote_icon = $(this).find('.upvote-icon').first();
+        var upvote_count = $(this).find('.upvote-count').first();
+        // toggle status of upvote button
+        $(this).data('status', current_status);
+        // make the color of the icon reflect the status
+        if (current_status) {
+            upvote_icon.attr('style','color: teal');
+        } else {
+            upvote_icon.removeAttr('style');
+        }
+        
+        // send ajax request to upvote comment endpoint
+        // update the status of the button to reflect the results
+        // update the color of the button to reflect the results
+        $.ajax({
+            url: $(this).data('endpoint'),
+            type: 'get', 
+            success: function(data) {
+                // FIXME after results are in make sure status and color are good
+                if (data == "on") {
+                    upvote_count.text(Number(upvote_count.text())+1)
+                } else {
+                    upvote_count.text(Number(upvote_count.text())-1)
+                }
+            },
+            //FIXME handle errors
+            error: function(data){
+                alert('error');
+            },
+            failure: function(data) { 
+                alert('error');
+            }
+        }); 
+    });
+</script>
