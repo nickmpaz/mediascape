@@ -18,7 +18,7 @@ node {
             // sh 'env/bin/python3.5 manage.py test --testrunner=djtrump.tests.test_runners.NoDbTestRunner'
 
         stage 'Deploy'
-            sh './deploy.sh'
+            sh 'echo deploying'
 
         // stage 'Publish results'
         //     slackSend color: "good", message: "Build successful: `${env.JOB_NAME}#${env.BUILD_NUMBER}` <${env.BUILD_URL}|Open in Jenkins>"
