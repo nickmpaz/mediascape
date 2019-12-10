@@ -1,0 +1,28 @@
+---
+- hosts: mediascape
+  gather_facts: yes
+  # become: true
+
+  tasks:
+
+    - name: apt package(s)
+      apt:
+        name: "{{ packages }}"
+        state: latest
+      vars:
+        packages:
+          - vim
+          - git
+
+    - name: checkout source code
+      git:
+        repo: 'git@github.com:nickmpaz/mediascape.git'
+        dest: /home/ubuntu/checkout
+        accept_hostkey: yes
+
+
+    # docker + docker-compose 
+    # ensure mediascape repository is present 
+    # ensure mediascape repository is up to date
+    # docker-compose restart
+    # migrate tables    
