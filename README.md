@@ -15,7 +15,7 @@ On the other hand, Mediascape has one thread for every book. This serves to cons
 the conversation about this book to one location. Users will never have to create their 
 own post and hope that it will become successful. They simply find the page correspoding 
 to their book, and join the conversation. Media discussion is a significant subset of the 
-usecases that larger discussion platforms serve. It strives to cater directly to this 
+use cases that larger discussion platforms serve. Mediascape strives to cater directly to this 
 subset, and offer a better and more focused experience. 
 
 ## Stack
