@@ -17,12 +17,12 @@
     - name: checkout source code
       git:
         repo: 'git@github.com:nickmpaz/mediascape.git'
-        dest: /home/ubuntu/mediascape
+        dest: '/home/ubuntu/mediascape'
         accept_hostkey: yes
 
     - name: docker-compose restart
-      command: docker-compose down && docker-compose -f docker-compose.prod.yml up -d --build
-        chdir: /home/ubuntu/mediascape
+      command: 'docker-compose down && docker-compose -f docker-compose.prod.yml up -d --build'
+        chdir: '/home/ubuntu/mediascape'
 
     # docker + docker-compose 
     # ensure mediascape repository is present 
