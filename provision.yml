@@ -20,10 +20,10 @@
         dest: '/home/ubuntu/mediascape'
         accept_hostkey: yes
 
-    - name: docker-compose restart
-      command: 'docker-compose down && docker-compose -f docker-compose.prod.yml up -d --build'
-        args:
-          chdir: '/home/ubuntu/mediascape'
+    # - name: docker-compose restart
+    #   command: 'docker-compose down && docker-compose -f docker-compose.prod.yml up -d --build'
+    #     args:
+    #       chdir: '/home/ubuntu/mediascape'
 
     # docker + docker-compose 
     # ensure mediascape repository is present 
