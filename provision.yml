@@ -13,6 +13,7 @@
         packages:
           - vim
           - git
+      become: true
 
     - name: checkout source code
       git:
