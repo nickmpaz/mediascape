@@ -1,7 +1,6 @@
 ---
 - hosts: mediascape
   gather_facts: yes
-  # become: true
 
   tasks:
 
