@@ -5,18 +5,26 @@
 <div class="container d-flex h-75">
     <div class="card w-75 m-auto">
         <div class="card-header text-light bg-primary text-center">
-            <h3>Signup</h3>
+            <h3>Login</h3>
         </div>
         <div class="card-body">
-            <form id="signupform" method="POST">
+            <form id="loginform" method="POST">
                 {% csrf_token %}
                 {% if next %}
                 <input type="hidden" value="{{ next }}" name="next" />
                 {% endif %}
                 {{ form.as_p }}
             </form>
+            <form id="signupform" action="{% url 'accounts:signup' %}">
+                {% if next %}
+                <input type="hidden" value="{{ next }}" name="next" />
+                {% endif %}
+            </form>
             <div class="container mt-4">
                 <div class="row">
+                    <div class="col-sm">
+                        <button type="submit" form="loginform" class="w-50 btn btn-outline-primary btn-block mx-auto">Login</button>
+                    </div>
                     <div class="col-sm">
                         <button type="submit" form="signupform" class="w-50 btn btn-outline-primary btn-block mx-auto">Signup</button>
                     </div>
