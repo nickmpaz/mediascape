@@ -14,6 +14,8 @@
           - git
       become: true
 
+    # ensure docker/ docker-compose installed
+
     - name: checkout source code
       git:
         repo: 'git@github.com:nickmpaz/mediascape.git'
