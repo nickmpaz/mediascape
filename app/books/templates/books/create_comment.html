@@ -1,0 +1,16 @@
+{% extends "layout/base.html" %}
+
+{% block body %}
+<!-- thread header -->
+<div class="container-fluid">
+    <div class="card border-secondary mt-5 mb-5">
+        <div class="card-header text-light bg-dark">
+            <h3>{{ book.title }} <small>by</small> {{ book.author }}</h3>
+        </div>
+        <div class="card-body">
+            <p>{{ book.description }}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

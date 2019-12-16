@@ -10,3 +10,18 @@ def thread(request, book_id):
         'book': book,
         'comments_list': comments_list,
     })
+
+def create_comment(request, book_id):
+
+    if request.method == "GET":
+
+        book = Book.objects.get(pk=book_id)
+
+        return render(request, 'books/create_comment.html', {
+            'book': book,
+            'comments_list': None,
+        })
+
+    else:
+
+        pass
