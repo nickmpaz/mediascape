@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Book, Comment
+from .forms import CommentForm
+
 
 def thread(request, book_id):
 
@@ -15,11 +17,18 @@ def create_comment(request, book_id):
 
     if request.method == "GET":
 
-        book = Book.objects.get(pk=book_id)
+        book = get_object_or_404(Book, pk=book_id)
+        comment_form = CommentForm(initial={'book': book})
+
+        try:
+            parent_comment = Comment.objects.get(pk=request.GET.get("parent"))
+        except Comment.DoesNotExist:
+            parent_comment = None
 
         return render(request, 'books/create_comment.html', {
             'book': book,
-            'comments_list': None,
+            'parent_comment': parent_comment,
+            'comment_form': comment_form,
         })
 
     else:

@@ -13,4 +13,58 @@
     </div>
 </div>
 
+{% if parent_comment %}
+
+<div id="{{parent_comment.id}}" class="container-fluid">
+    <div class="card border-secondary">
+
+        <!-- card header -->
+        <div class="card-header {% if parent_comment.author == request.user %} text-light bg-dark {% endif %}">
+            <!-- author -->
+            <span>
+                {{ parent_comment.author }}
+            </span>
+        </div>
+        <!-- card body -->
+        <div class="card-body">
+            <p>{{ parent_comment }}</p>
+        </div>
+        <!-- reply -->
+        <div>
+
+            {% endif %}
+
+            <div class="container-fluid">
+                <div class="card border-secondary">
+                    <form id="create-comment-form" action="#" method="POST">
+                        {% csrf_token %}
+                        <div class="card-header text-light bg-dark ">
+                            <button type="submit" class="btn btn-dark btn-sm">
+                                <i class="fa fa-arrow-up"></i>
+                                <span>Submit</span>
+                            </button>
+                            <button type="button" id="cancel-comment-button" class="btn btn-dark btn-sm">
+                                <i class="fa fa-times"></i>
+                                <span>Cancel</span>
+                            </button>
+                        </div>
+                        <div class="card-body h-auto">
+                            <input type="hidden" name="next" value="{{ request.path }}">
+                            {{ comment_form.book.as_hidden }}
+                            {{ comment_form.parent.as_hidden }}
+                            {{ comment_form.text }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <br>
+            
+            {% if parent_comment %}
+
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
 {% endblock %}

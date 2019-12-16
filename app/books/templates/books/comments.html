@@ -33,13 +33,7 @@
 
             <!-- report button or delete comment button -->
             {% if comment.author == request.user %}
-            <!-- <form class="d-inline"action="{% url 'books:delete-comment' comment.id %}#{{comment.id}}" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="next" value="{{ request.path }}">
-                <button class="delete-comment btn text-light bg-dark btn-sm"> 
-                    <i class="fa fa-times"></i>
-                </button> 
-            </form> -->
+           
             <button class="delete-comment btn text-light bg-dark btn-sm" data-endpoint="#"> 
                 <i class="fa fa-times"></i>
             </button> 
