@@ -36,29 +36,28 @@
 
             <div class="container-fluid">
                 <div class="card border-secondary">
-                    <form id="create-comment-form" action="#" method="POST">
+                    <form id="create-comment-form" method="POST">
                         {% csrf_token %}
                         <div class="card-header text-light bg-dark ">
                             <button type="submit" class="btn btn-dark btn-sm">
                                 <i class="fa fa-arrow-up"></i>
                                 <span>Submit</span>
                             </button>
-                            <button type="button" id="cancel-comment-button" class="btn btn-dark btn-sm">
+                            <button type="button" id="cancel-comment-button" class="btn btn-dark btn-sm"
+                                onclick="window.history.back()">
                                 <i class="fa fa-times"></i>
                                 <span>Cancel</span>
                             </button>
                         </div>
                         <div class="card-body h-auto">
                             <input type="hidden" name="next" value="{{ request.path }}">
-                            {{ comment_form.book.as_hidden }}
-                            {{ comment_form.parent.as_hidden }}
-                            {{ comment_form.text }}
+                            {{ comment_form }}
                         </div>
                     </form>
                 </div>
             </div>
             <br>
-            
+
             {% if parent_comment %}
 
         </div>

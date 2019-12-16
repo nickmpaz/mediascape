@@ -11,10 +11,12 @@
             <p>{{ book.description }}</p>
         </div>
         <div class="card-footer">
-            <button id="create-comment-button" class="btn btn-light btn-sm">
-                <i class="fa fa-comment"></i>
-                <span>Comment</span>
-            </button>
+            <form action="{% url 'books:create_comment' book.id 0 %}">  
+                <button id="create-comment-button" class="btn btn-light btn-sm">
+                    <i class="fa fa-comment"></i>
+                    <span>Comment</span>
+                </button>
+            </form>
         </div>
     </div>
 </div>
