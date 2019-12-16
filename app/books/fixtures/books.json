@@ -1,0 +1,112 @@
+[
+{
+    "model": "books.book",
+    "pk": 1,
+    "fields": {
+        "created_at": "2019-12-16T02:11:43.416Z",
+        "updated_at": "2019-12-16T02:11:43.416Z",
+        "title": "2001: A Space Odyssey",
+        "author": "Arthur C. Clarke",
+        "description": "An imposing black structure provides a connection between the past and the future in this enigmatic adaptation of a short story by revered sci-fi author Arthur C. Clarke. When Dr. Dave Bowman (Keir Dullea) and other astronauts are sent on a mysterious mission, their ship's computer system, HAL, begins to display increasingly strange behavior, leading up to a tense showdown between man and machine that results in a mind-bending trek through space and time."
+    }
+},
+{
+    "model": "books.book",
+    "pk": 2,
+    "fields": {
+        "created_at": "2019-12-16T02:13:05.967Z",
+        "updated_at": "2019-12-16T02:13:05.967Z",
+        "title": "The Moon Is a Harsh Mistress",
+        "author": "Robert A. Heinlein",
+        "description": "The Moon Is a Harsh Mistress is a 1966 science fiction novel by American writer Robert A. Heinlein, about a lunar colony's revolt against rule from Earth. The novel expresses and discusses libertarian ideals. It is respected for its credible presentation of a comprehensively imagined future human society on both the Earth and the Moon."
+    }
+},
+{
+    "model": "books.book",
+    "pk": 3,
+    "fields": {
+        "created_at": "2019-12-16T02:13:51.567Z",
+        "updated_at": "2019-12-16T02:13:51.567Z",
+        "title": "Red Rising",
+        "author": "Pierce Brown",
+        "description": "Red Rising is a 2014 science fiction dystopian thriller novel by American author Pierce Brown, and the first book and eponym of a series. The novel, set on a future planet Mars, follows lowborn miner Darrow as he infiltrates the ranks of the elite Golds."
+    }
+},
+{
+    "model": "books.book",
+    "pk": 4,
+    "fields": {
+        "created_at": "2019-12-16T02:14:42.444Z",
+        "updated_at": "2019-12-16T02:14:42.444Z",
+        "title": "The Forever War",
+        "author": "Joseph Haldeman",
+        "description": "The Forever War (1974) is a military science fiction novel by American author Joe Haldeman, telling the contemplative story of soldiers fighting an interstellar war between Man and the Taurans."
+    }
+},
+{
+    "model": "books.book",
+    "pk": 5,
+    "fields": {
+        "created_at": "2019-12-16T02:15:39.455Z",
+        "updated_at": "2019-12-16T02:15:39.455Z",
+        "title": "Dune",
+        "author": "Frank Herbert",
+        "description": "Set in the distant future amidst a feudal interstellar society in which various noble houses control planetary fiefs, Dune tells the story of young Paul Atreides, whose family accepts the stewardship of the planet Arrakis. While the planet is an inhospitable and sparsely populated desert wasteland, it is the only source of melange, or \"the spice\", a drug that extends life and enhances mental abilities."
+    }
+},
+{
+    "model": "books.book",
+    "pk": 6,
+    "fields": {
+        "created_at": "2019-12-16T02:16:35.099Z",
+        "updated_at": "2019-12-16T02:16:35.099Z",
+        "title": "House of Suns",
+        "author": "Alastair Reynolds",
+        "description": "The main story arc is set approximately 6 million years in the future. Humanity has spread throughout the Milky Way galaxy, which appears devoid of any other organic sentient life. The galaxy is populated by many civilizations of humans and various posthumans of widely varying levels of development. A civilization of sentient robots known as the Machine People has also developed, and coexists peacefully with humanity. Technologies of the era include anti-gravity, inertial damping, force fields, stellar engineering, and stasis fields. Also of note is the \"Absence\"\u2014the mysterious disappearance of the Andromeda Galaxy."
+    }
+},
+{
+    "model": "books.book",
+    "pk": 7,
+    "fields": {
+        "created_at": "2019-12-16T02:17:36.340Z",
+        "updated_at": "2019-12-16T02:17:36.340Z",
+        "title": "Ringworld",
+        "author": "Larry Niven",
+        "description": "Ringworld is a 1970 science fiction novel by Larry Niven, set in his Known Space universe and considered a classic of science fiction literature. Ringworld tells the story of Louis Wu and his companions on a mission to the Ringworld, a massive alien construct in space 186 million miles in diameter."
+    }
+},
+{
+    "model": "books.book",
+    "pk": 8,
+    "fields": {
+        "created_at": "2019-12-16T02:18:37.030Z",
+        "updated_at": "2019-12-16T02:18:37.030Z",
+        "title": "Nineteen Eighty-Four",
+        "author": "George Orwell",
+        "description": "Nineteen Eighty-Four: A Novel, often published as 1984, is a dystopian novel by English novelist George Orwell. It was published in June 1949 by Secker & Warburg as Orwell's ninth and final book completed in his lifetime. The story was mostly written at Barnhill, a farmhouse on the Scottish island of Jura, at times while Orwell suffered from severe tuberculosis. Thematically, Nineteen Eighty-Four centres on the consequences of government over-reach, totalitarianism, and repressive regimentation of all persons and behaviours within society."
+    }
+},
+{
+    "model": "books.book",
+    "pk": 9,
+    "fields": {
+        "created_at": "2019-12-16T02:19:21.484Z",
+        "updated_at": "2019-12-16T02:19:21.485Z",
+        "title": "Slaughterhouse-Five",
+        "author": "Kurt Vonnegut",
+        "description": "Slaughterhouse-Five, or The Children's Crusade: A Duty-Dance with Death is a science fiction-infused anti-war novel by Kurt Vonnegut, first published in 1969. It follows the life and experiences of Billy Pilgrim, from his early years to his time as an American soldier and chaplain's assistant during World War II, to the postwar years, with Billy occasionally traveling through time itself. The text centers on Billy's capture by the German Army and his survival of the Allied firebombing of Dresden as a prisoner-of-war, an experience which Vonnegut himself lived through as an American serviceman."
+    }
+},
+{
+    "model": "books.book",
+    "pk": 10,
+    "fields": {
+        "created_at": "2019-12-16T02:19:56.173Z",
+        "updated_at": "2019-12-16T02:19:56.174Z",
+        "title": "Brave New World",
+        "author": "Aldous Huxley",
+        "description": "Brave New World is a dystopian novel by English author Aldous Huxley, written in 1931 and published in 1932. Largely set in a futuristic World State, inhabited by genetically modified citizens and an intelligence-based social hierarchy, the novel anticipates huge scientific advancements in reproductive technology, sleep-learning, psychological manipulation and classical conditioning that are combined to make a dystopian society which is challenged by only a single individual: the story's protagonist."
+    }
+}
+]

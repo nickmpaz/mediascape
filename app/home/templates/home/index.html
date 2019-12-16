@@ -2,6 +2,144 @@
 
 {% block body %}
 
-    <div>Coming soon.</div>
+<div class="container-fluid mt-4">
+    <div class="jumbotron">
+        <div class="container text-center">
+            <h1 class="display-4">Join the Discussion</h1>
+            <p class="lead">Find Conversations About Your Favorite Media</p>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <button class="btn btn-outline-dark dropdown-toggle" type="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Books</button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Movies (Coming Soon)</a>
+                        <a class="dropdown-item" href="#">TV Shows (Coming Soon)</a>
+                        <a class="dropdown-item" href="#">Music (Coming Soon)</a>
+                    </div>
+                </div>
+                <input id="search-bar" type="text" spellcheck="false" class="form-control shadow-none"
+                    placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-search"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- table -->
+<div class="container-fluid">
+        <table id="table" class="table table-striped table-hover table-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        Trending
+                    </th>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Author
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books_list %}
+                <tr class="table-row" data-desc="{{ book.description }}" data-thread="{% url 'books:thread' book.id %}" style="cursor:pointer;">
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    
+    <script>
+        // function that creates expandable row descriptions
+        function format(desc, thread_url) {
+            return `
+                <div class="slider" style="display: none;">
+                    <div class="card card-body bg-light border-0">
+                        <p>
+                            ${desc}
+                        </p>
+                        <form class="text-right" action="${thread_url}">
+                            <button class="btn btn-outline-dark">
+                                <span>Go to conversation</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            `;
+        }
+        $(document).ready(function () {
+            // track which row is expanded
+            var openRow;
+            // init datatable
+            var table = $('#table').DataTable({
+                "lengthChange": false,
+                "ordering": false,
+                "dom": "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-12 col-md-5'><'col-sm-12 col-md-7'>>",
+                "language": {
+                    "zeroRecords": "No matching books",
+                },
+            });
+            // table pagination
+            $('#next-page').on('click', function () {
+                table.page('next').draw('page');
+            });
+            $('#prev-page').on('click', function () {
+                table.page('previous').draw('page');
+            });
+            // enable datatables custom searchbar. If there is a query, show the not found? button
+            $('#search-bar').on('keyup', function () {
+                table.search($(this).val()).draw();
+                if ($(this).val() == '') {
+                    $('#not-found-prompt').fadeOut();
+                } else {
+                    $('#not-found-prompt').fadeIn();
+                }
+            });
+            // stop search bar from submitting on enter press
+            $('#search-bar').keydown(function (e) {
+                if (e.keyCode == 13) {
+                    e.preventDefault();
+                }
+            });
+            // handle expandable table row descriptions
+            $('#table').on('click', '.table-row', function () {
+                var tr = $(this);
+                var row = table.row(tr);
+                if (row.child.isShown()) {
+                    $('div.slider', row.child()).slideUp(function () {
+                        row.child.hide();
+                    });
+                    openRow = null;
+                }
+                else {
+                    if (openRow != null) table.row(openRow).child.hide();
+                    row.child(format(tr.data('desc'), tr.data('thread')), 'no-padding').show();
+                    $('div.slider', row.child()).slideDown();
+                    openRow = tr;
+                }
+            });
+            // draw the description of open row if table is redrawn
+            table.on('draw', function () {
+                if (openRow != null) {
+                    openRow.trigger('click');
+                }
+            });
+        });
+    </script>
+    <style>
+        /* for animating table row descriptions */
+        table.dataTable tbody td.no-padding {
+            padding: 0;
+        }
+    </style>
 
 {% endblock %}
