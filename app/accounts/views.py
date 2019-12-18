@@ -25,3 +25,11 @@ def signup(request):
             'form': f,
             'next': request.POST.get('next')
         })
+
+def comments(request):
+
+    comments_list = request.user.likes.all()
+
+    return render(request, 'accounts/comments.html', {
+        'comments_list': comments_list,
+    })
