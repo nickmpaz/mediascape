@@ -26,3 +26,8 @@
       shell: docker-compose -f docker-compose.prod.yml down && docker-compose -f docker-compose.prod.yml up -d --build
       args:
         chdir: '/home/ubuntu/mediascape'
+
+    - name: migrate database
+      shell: docker-compose exec web python manage.py migrate
+      args:
+        chdir: '/home/ubuntu/mediascape'

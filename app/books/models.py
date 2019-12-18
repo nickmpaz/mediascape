@@ -25,6 +25,8 @@ class Comment(models.Model):
         'self', on_delete=models.CASCADE, blank=True, null=True, default=None)
     book = models.ForeignKey('Book', on_delete=models.CASCADE)
     text = models.TextField()
+    likes = models.ManyToManyField(User, related_name='likes')
+
 
     def __str__(self):
 
@@ -32,7 +34,7 @@ class Comment(models.Model):
 
     def get_absolute_url(self):
 
-        comment_id = self.id if self.parent is None else self.parent.id
+        comment_id = self.parent.id if self.parent else self.id
 
         return '{}#{}'.format(
             reverse('books:thread', args=[self.book.id]),
