@@ -3,6 +3,48 @@ from .models import Book, Comment
 from .forms import CommentForm
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
+from django_datatables_view.base_datatable_view import BaseDatatableView
+from django.urls import reverse
+
+
+class Search(BaseDatatableView):
+
+    model = Book
+
+    columns = ['title', 'author']
+
+    order_columns = ['title', 'author']
+
+    def get_initial_queryset(self):
+        if not self.model:
+            raise NotImplementedError("Need to provide a model or implement get_initial_queryset!")
+
+
+        # create new books with google api
+        
+        return self.model.objects.all()
+
+    def prepare_results(self, qs):
+
+        data = []
+        for item in qs:
+            if self.is_data_list:
+                data.append([self.render_column(item, column)
+                             for column in self._columns])
+            else:
+                row = {col_data['data']: self.render_column(
+                    item, col_data['data']) for col_data in self.columns_data}
+                row['DT_RowClass'] = "table-row"
+                row['DT_RowData'] = {
+                    "desc": item.description,
+                    "thread": reverse('books:thread', args=[item.id])
+                }
+                row['DT_RowAttr'] = {
+                    'style': 'cursor:pointer;'
+                }
+                data.append(row)
+
+        return data
 
 
 def thread(request, book_id):
@@ -14,6 +56,7 @@ def thread(request, book_id):
         'book': book,
         'comments_list': comments_list,
     })
+
 
 @login_required
 def create_comment(request, book_id, comment_id):
@@ -51,20 +94,24 @@ def create_comment(request, book_id, comment_id):
             'comment_form': comment_form,
         })
 
+
 def delete_comment(request, book_id, comment_id):
 
     comment = get_object_or_404(Comment, pk=comment_id)
 
-    if request.user != comment.author: return HttpResponseForbidden()
+    if request.user != comment.author:
+        return HttpResponseForbidden()
 
     comment.delete()
-        
+
     return HttpResponse()
+
 
 def like_comment(request, book_id, comment_id):
 
-    if not request.user.is_authenticated: return HttpResponseForbidden()
-    
+    if not request.user.is_authenticated:
+        return HttpResponseForbidden()
+
     comment = get_object_or_404(Comment, pk=comment_id)
 
     # If the user has upvoted the comment

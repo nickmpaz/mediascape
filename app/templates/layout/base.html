@@ -90,17 +90,22 @@
             <div class="list-group list-group-flush">
                 {% if user.is_authenticated %}
                 <h5 class="list-group-item bg-light">{{ user.get_username }}</h5>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Notifications</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Comments</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Account</a>
-                <form action="{% url 'accounts:logout' %}">
+
+                <button form="" class="list-group-item list-group-item-action bg-light">Account</button>
+                
+                <button form="accounts-comments" class="list-group-item list-group-item-action bg-light">Comments</button>
+                <form id="accounts-comments" action="{% url 'accounts:comments' %}"></form>
+                
+                <button form="" class="list-group-item list-group-item-action bg-light">Notifications</button>
+
+                <button form="accounts-logout" class="list-group-item list-group-item-action bg-light">Logout</button>
+                <form id="accounts-logout" action="{% url 'accounts:logout' %}">
                     <input type="hidden" value="{{ request.get_full_path }}" name="next" />
-                    <button type="submit" class="list-group-item list-group-item-action bg-light">Logout</button>
                 </form>
                 {% else %}
-                <form action="{% url 'accounts:login' %}">
+                <button form="accounts-login" class="list-group-item list-group-item-action bg-light">Login</button>
+                <form id="accounts-login" action="{% url 'accounts:login' %}">
                     <input type="hidden" value="{{ request.get_full_path }}" name="next" />
-                    <button type="submit" class="list-group-item list-group-item-action bg-light">Login</button>
                 </form>
                 {% endif %}
                 <a class="list-group-item bg-light disabled"></a>
