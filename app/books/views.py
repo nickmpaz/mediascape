@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django_datatables_view.base_datatable_view import BaseDatatableView
 from django.urls import reverse
 from django.conf import settings
+import requests
+
 
 class Search(BaseDatatableView):
 
@@ -15,16 +17,39 @@ class Search(BaseDatatableView):
 
     order_columns = ['title', 'author']
 
+    def create_new_books(self, query):
+
+        response = requests.get(settings.GOOGLE_BOOKS_API,
+            params={
+                'q': query,
+                'key': settings.GOOGLE_BOOKS_API_KEY,
+            },
+        ).json()
+
+        for item in response['items']:
+
+            title = item['volumeInfo'].get('title')
+            authors = item['volumeInfo'].get('authors')
+            description = item['volumeInfo'].get('description')
+
+            if (title and authors and description and
+                    Book.objects.filter(title=title, author=authors[0]).count() == 0):
+                print(title)
+                Book.objects.create(
+                    title=title, author=authors[0], description=description)
+
     def get_initial_queryset(self):
         if not self.model:
-            raise NotImplementedError("Need to provide a model or implement get_initial_queryset!")
-
+            raise NotImplementedError(
+                "Need to provide a model or implement get_initial_queryset!")
 
         # create new books with google api
+        query = self.request.GET.get('search[value]', None)
+
+        if query and len(query) > 3:
+            self.create_new_books(query)
 
         return self.model.objects.all()
-
-
 
     def prepare_results(self, qs):
 
