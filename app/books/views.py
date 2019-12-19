@@ -51,8 +51,6 @@ class Search(BaseDatatableView):
 
 def thread(request, book_id):
 
-    raise Exception(settings.GOOGLE_BOOKS_API_KEY)
-
     book = get_object_or_404(Book, pk=book_id)
     comments_list = Comment.objects.filter(book=book, parent=None)
 
