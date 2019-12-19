@@ -135,6 +135,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-# General environment variables
+# General variables
 
+GOOGLE_BOOKS_API = 'https://www.googleapis.com/books/v1/volumes'
 GOOGLE_BOOKS_API_KEY = os.environ.get('GOOGLE_BOOKS_API_KEY')

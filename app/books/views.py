@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidde
 from django.contrib.auth.decorators import login_required
 from django_datatables_view.base_datatable_view import BaseDatatableView
 from django.urls import reverse
-
+from django.conf import settings
 
 class Search(BaseDatatableView):
 
@@ -21,8 +21,10 @@ class Search(BaseDatatableView):
 
 
         # create new books with google api
-        
+
         return self.model.objects.all()
+
+
 
     def prepare_results(self, qs):
 
@@ -48,6 +50,8 @@ class Search(BaseDatatableView):
 
 
 def thread(request, book_id):
+
+    raise Exception(settings.GOOGLE_BOOKS_API_KEY)
 
     book = get_object_or_404(Book, pk=book_id)
     comments_list = Comment.objects.filter(book=book, parent=None)
