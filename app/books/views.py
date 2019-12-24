@@ -80,7 +80,7 @@ class Search(BaseDatatableView):
 def thread(request, book_id):
 
     book = get_object_or_404(Book, pk=book_id)
-    comments_list = Comment.objects.filter(book=book, parent=None)
+    comments_list = Comment.objects.filter(book=book, parent=None).annotate(likes_count=Count('likes')).order_by('-likes_count')
 
     return render(request, 'books/thread.html', {
         'book': book,
