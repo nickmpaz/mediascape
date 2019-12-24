@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django_datatables_view.base_datatable_view import BaseDatatableView
 from django.urls import reverse
 from django.conf import settings
+from django.contrib.auth.models import User
+from django.db.models import Count
 import requests
 
 
@@ -20,11 +22,11 @@ class Search(BaseDatatableView):
     def create_new_books(self, query):
 
         response = requests.get(settings.GOOGLE_BOOKS_API,
-            params={
-                'q': query,
-                'key': settings.GOOGLE_BOOKS_API_KEY,
-            },
-        ).json()
+                                params={
+                                    'q': query,
+                                    'key': settings.GOOGLE_BOOKS_API_KEY,
+                                },
+                                ).json()
 
         for item in response['items']:
 
@@ -49,7 +51,8 @@ class Search(BaseDatatableView):
         if query and len(query) > 3:
             self.create_new_books(query)
 
-        return self.model.objects.all()
+        # return books ordered desc by number of comments
+        return self.model.objects.annotate(comment_count=Count('comment')).order_by('-comment_count')
 
     def prepare_results(self, qs):
 
