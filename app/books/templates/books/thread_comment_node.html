@@ -33,7 +33,10 @@
                 <span class="like-count">{{ comment.likes.all.count }}</span>
             </button>
             {% else %}
-            <button form="login{{ comment.id }}" class="like-comment btn btn-light btn-sm"><i class="like-icon fa fa-thumbs-up"></i></button>
+            <button form="login{{ comment.id }}" class="like-comment btn btn-light btn-sm">
+                <i class="like-icon fa fa-thumbs-up"></i>
+                <span class="like-count">{{ comment.likes.all.count }}</span>
+            </button>
             {% endif %}
 
             <!-- author -->
