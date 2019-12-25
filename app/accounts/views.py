@@ -28,8 +28,16 @@ def signup(request):
 
 def comments(request):
 
-    comments_list = request.user.likes.all()
+    comments_list = request.user.comment_set.all()
 
     return render(request, 'accounts/comments.html', {
         'comments_list': comments_list,
+    })
+
+def likes(request):
+
+    likes_list = request.user.likes.exclude(author=request.user)
+
+    return render(request, 'accounts/likes.html', {
+        'likes_list': likes_list,
     })

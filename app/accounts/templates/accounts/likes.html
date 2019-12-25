@@ -1,0 +1,37 @@
+{% extends "layout/base.html" %}
+
+{% block body %}
+
+<div class="m-5"></div>
+
+{% for comment in likes_list %}
+
+<div id="{{comment.id}}" class="container-fluid mt-3">
+    <div class="card border-secondary">
+        <!-- card header -->
+        <div class="card-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-1">
+                        <button id="create-comment-button" class="btn btn-light" form="goto{{ comment.id }}">
+                            <i class="fa fa-external-link"></i>
+                        </button>
+                    </div>
+                    <div class="col-sm">
+                        <h3>{{ comment.book.title }} <small>by</small> {{ comment.book.author }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- comment body -->
+        <div class="card-body">
+            <p>{{ comment.text }}</p>
+        </div>
+    </div>
+    <form id="goto{{ comment.id }}" action="{% url 'books:thread' comment.book.id %}#{{ comment.id }}">
+    </form>
+</div>
+
+{% endfor %}
+
+{% endblock %}

@@ -96,7 +96,8 @@
                 <button form="accounts-comments" class="list-group-item list-group-item-action bg-light">Comments</button>
                 <form id="accounts-comments" action="{% url 'accounts:comments' %}"></form>
                 
-                <button form="" class="list-group-item list-group-item-action bg-light">Notifications</button>
+                <button form="accounts-likes" class="list-group-item list-group-item-action bg-light">Likes</button>
+                <form id="accounts-likes" action="{% url 'accounts:likes' %}"></form>
 
                 <button form="accounts-logout" class="list-group-item list-group-item-action bg-light">Logout</button>
                 <form id="accounts-logout" action="{% url 'accounts:logout' %}">
