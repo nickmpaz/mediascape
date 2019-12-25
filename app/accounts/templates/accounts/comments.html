@@ -25,7 +25,7 @@
         </div>
         <!-- comment body -->
         <div class="card-body">
-            <p>{{ comment }}</p>
+            <p>{{ comment.text }}</p>
         </div>
     </div>
     <form id="goto{{ comment.id }}" action="{% url 'books:thread' comment.book.id %}#{{ comment.id }}">
