@@ -1,6 +1,7 @@
 version: '3.7'
 
 services:
+
   web:
     build:
       context: ./app
@@ -14,12 +15,14 @@ services:
       - ./.env.prod
     depends_on:
       - db
+
   db:
     image: postgres:12.0-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.env.prod.db
+
   nginx:
     build: ./nginx
     volumes:
@@ -29,6 +32,15 @@ services:
     depends_on:
       - web
 
+  redis:
+    restart: always
+    image: redis:latest
+    ports:
+      - 6379:6379
+    volumes:
+      - redis_data:/var/lib/redis/data/
+
 volumes:
   postgres_data:
+  redis_data:
   static_volume:

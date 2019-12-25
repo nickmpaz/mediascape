@@ -1,6 +1,7 @@
 version: '3.7'
 
 services:
+
   web:
     build: ./app
     command: python manage.py runserver 0.0.0.0:8000
@@ -12,6 +13,7 @@ services:
       - ./.env.dev
     depends_on:
       - db
+
   db:
     image: postgres:12.0-alpine
     volumes:
@@ -21,5 +23,14 @@ services:
       - POSTGRES_PASSWORD=mediascape
       - POSTGRES_DB=mediascape_dev
 
+  redis:
+    restart: always
+    image: redis:latest
+    ports:
+      - 6379:6379
+    volumes:
+      - redis_data:/var/lib/redis/data/
+
 volumes:
   postgres_data:
+  redis_data:

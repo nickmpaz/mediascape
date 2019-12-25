@@ -9,6 +9,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db.models import Count
 import requests
+from django.core.cache import cache
 
 
 class Search(BaseDatatableView):
@@ -48,8 +49,11 @@ class Search(BaseDatatableView):
         # create new books with google api
         query = self.request.GET.get('search[value]', None)
 
-        if query and len(query) > 3:
+        if query and len(query) > 3 and not cache.get(query):
+
             self.create_new_books(query)
+
+            cache.set(query, 1, 60 * 60 * 24 * 7 * 4)
 
         # return books ordered desc by number of comments
         return self.model.objects.annotate(comment_count=Count('comment')).order_by('-comment_count')
