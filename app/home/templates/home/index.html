@@ -48,6 +48,13 @@
     </table>
 </div>
 
+<!-- pagination buttons -->
+<div class="container-fluid text-right">
+    <div class="btn-group" role="group" aria-label="pagination">
+        <button id="prev-page" class="btn btn-outline-dark"><span>Prev</span></button>
+        <button id="next-page" class="btn btn-outline-dark"><span>Next</span></button>
+    </div>
+</div>
 
 <script>
     // function that creates expandable row descriptions
@@ -58,7 +65,7 @@
                         <p>
                             ${desc}
                         </p>
-                        <form action="${thread_url}">
+                        <form class="mt-3" action="${thread_url}">
                             <button class="btn btn-outline-dark">
                                 <span>Go to conversation</span>
                             </button>
@@ -89,12 +96,12 @@
             ],
         });
         // table pagination
-        // $('#next-page').on('click', function () {
-        //     table.page('next').draw('page');
-        // });
-        // $('#prev-page').on('click', function () {
-        //     table.page('previous').draw('page');
-        // });
+        $('#next-page').on('click', function () {
+            table.page('next').draw('page');
+        });
+        $('#prev-page').on('click', function () {
+            table.page('previous').draw('page');
+        });
         
         // stop search bar from submitting on enter press
         $('#search-bar').keydown(function (e) {
