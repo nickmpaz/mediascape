@@ -1,4 +1,4 @@
 def globals(request):
     return {
-        'brand': 'Mediascape',
+        'brand': 'PaperWave',
     }
