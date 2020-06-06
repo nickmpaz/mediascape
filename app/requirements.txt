@@ -1,4 +1,4 @@
-Django==2.2.8
+Django==2.2.13
 django-datatables-view==1.19.1
 django-redis-cache==2.1.0
 gunicorn==19.9.0
